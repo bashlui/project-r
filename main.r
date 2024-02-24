@@ -38,13 +38,16 @@ region = ifelse(M$entidad %in% R1, "R1", "R2")
 M1 = cbind(M, region)
 ```
 
-## Crea un subconjunto de datos de las variables elegidas, quita la entidad y las filas con datos faltantes
+#### Crea un subconjunto de datos de las variables elegidas, quita la entidad y las filas con datos faltantes
+Al utilizar la librería dplyr, seleccionamos las variables que nos interesan y quitamos la entidad y las filas con datos faltantes para así obtener una base de datos sin datos faltantes y tenga un impacto positivo a nuestro análisis.
+
 ```{r}
 library(dplyr)
-M1=select(M1, "entidad", "region", "electrd_fosiles", "electrd_nuclear", "electrd_de_energ_renov", "electrd_de_f_bajas_carb", "finan_paises_desarr", "crecimiento_PIB", "PIB_per_cap", "densidad_pobl_Km2", "superficie", "latitud", "longitud")
+M1=select(M1, "anio", "region", "acceso_electrd", "acceso_combust_limpios", "energ_renov", "consumo_energ_prim", "electrd_fosiles", "emisiones_CO2", "crecimiento_PIB", "electrd_de_f_bajas_carb")
 M1 = na.omit(M1)
 str(M1)
 ```
+
 ## Guardar la base de datos
 ```{r}
 write.csv(M1, "datosEq7.csv", row.names = FALSE)  # cambia # por el número de tu equipo.
