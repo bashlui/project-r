@@ -89,17 +89,90 @@ apply(R2M, 2, Rm)  #Calcula el rango medio para las variables de la Región 2
 
 
 ## Histogramas
+Histograma del consumo de energía generada por combustibles fósiles (carbón, petróleo y gas natural) en cada región.
+
 ```{r}
 par(mfrow=c(1,2))
-hist(R1$electrd_fosiles, col = "cadetblue", main="Región 1", xlab="Electricidad de origen fósil(kWh)", ylab = "Frecuencia")
+hist(R1$electrd_fosiles, col = "burlywood1", main="Región 1", xlab="Consumo de energía (TWh)", ylab = "Frecuencia")
 
-hist(R2$electrd_fosiles, col = "darkkhaki", main="Región 2", xlab="Electricidad de origen fósil(kWh)", ylab = "Frecuencia")
+hist(R2$electrd_fosiles, col = "burlywood3", main="Región 2", xlab="Consumo de energía (TWh)", ylab = "Frecuencia")
 ```
+
+Histograma del consumo de energía generada por fuentes renovables.
+```{r}
+par(mfrow=c(1,2))
+hist(R1$energ_renov, col = "aquamarine1", main="Región 1", xlab="Consumo en teravatios por hora (TWh)", ylab = "Frecuencia")
+
+hist(R2$energ_renov, col = "aquamarine4", main="Región 2", xlab="Consumo en teravatios por hora (TWh)", ylab = "Frecuencia")
+```
+
+Histograma del consumo de energía generada por fuentes de energía bajas en carbono.
+```{r}
+par(mfrow=c(1,2))
+hist(R1$electrd_de_f_bajas_carb, col = "darkseagreen1", main="Región 1", xlab="Consumo en teravatios por hora (TWh)", ylab = "Frecuencia")
+
+hist(R2$electrd_de_f_bajas_carb, col = "darkseagreen3", main="Región 2", xlab="Consumo en teravatios por hora (TWh)", ylab = "Frecuencia")
+
+```
+
 
 ## Gráficos de caja y bigote
+
+Gráfica de caja y bigote del acceso a la electricidad por región.
 ```{r}
-boxplot(electrd_fosiles ~ region, data = M, col = "coral2", main = "Electricidad de origen fósil", xlab = "Región", ylab = "Electricidad de origen fósil(kWh)")
+boxplot(acceso_electrd ~ region, data = M, col = "coral4", main = "Acceso a la electricidad por región", xlab = "Región", ylab = "Porcentaje de acceso a la electricidad")
 ```
+Estadísticos del acceso a la electricidad por región.
+```{r}
+cat("Región 1", "\n")
+summary(R1$acceso_electrd)
+cat("----------------------------------", "\n")
+cat("Región 2", "\n")
+summary(R2$acceso_electrd)
+```
+
+Gráfica de caja y bigote del acceso a combustibles limpios por región.
+```{r}
+boxplot(acceso_combust_limpios ~ region, data = M, col = "cadetblue1", main = "Acceso a combustibles limpios por región", xlab = "Región", ylab = "(%) de acceso a combustibles limpios")
+```  
+
+Estadísticos del acceso a combustibles limpios por región.
+```{r}
+cat("Región 1", "\n")
+summary(R1$acceso_combust_limpios)
+cat("----------------------------------", "\n")
+cat("Región 2", "\n")
+summary(R2$acceso_combust_limpios)
+```
+
+Gráfica de caja y bigote del consumo de energía primaria por región.
+```{r}
+boxplot(consumo_energ_prim ~ region, data = M, col = "chartreuse4", main = "Consumo de energía primaria por región", xlab = "Región", ylab = "Consumo de energía primaria (TWh)")
+```
+
+Estadísticos del consumo de energía primaria por región.
+```{r}
+cat("Región 1", "\n")
+summary(R1$consumo_energ_prim)
+cat("----------------------------------", "\n")
+cat("Región 2", "\n")
+summary(R2$consumo_energ_prim)
+```
+
+Gráfica de caja y bigote del emisiones de CO2 por región.
+```{r}
+boxplot(emisiones_CO2 ~ region, data = M, col = "azure4", main = "Emisiones de CO2 por región", xlab = "Región", ylab = "Emisiones de CO2 (MtCO2)")
+```
+
+Estadísticos del emisiones de CO2 por región.
+```{r}
+cat("Región 1", "\n")
+summary(R1$emisiones_CO2)
+cat("----------------------------------", "\n")
+cat("Región 2", "\n")
+summary(R2$emisiones_CO2)
+```
+
 
 ## Coeficiente de correlación
 ```{r}
